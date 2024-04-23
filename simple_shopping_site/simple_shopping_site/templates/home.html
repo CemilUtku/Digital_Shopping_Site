@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Welcome to Simple Shopping Site</h2>
+    <p>
+        Explore our products and create your customer profile to start shopping.
+    </p>
+    <a href="{% url 'create_customer' %}" class="btn btn-primary">Create Customer</a>
+    <a href="{% url 'create_product' %}" class="btn btn-primary">Create New Product</a>
+
+    <h3>Our Customers</h3>
+    <ul>
+        {% for customer in customers %}
+            <li>{{ customer.name }} - {{ customer.email }}</li>
+        {% empty %}
+            <li>No customers yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
