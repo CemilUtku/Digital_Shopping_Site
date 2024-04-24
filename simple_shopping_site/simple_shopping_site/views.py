@@ -3,7 +3,7 @@ from .models import Product, Customer
 from .forms import CustomerForm, ProductForm
 
 def home(request):
-    customers = Customer.objects.all()  # Müşterileri al
+    customers = Customer.objects.all()  
     return render(request, 'home.html', {'customers': customers})  
 
 def list_customers(request):
