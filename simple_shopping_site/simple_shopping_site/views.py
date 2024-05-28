@@ -39,20 +39,20 @@ def create_product(request):
 
 def process_order(request):
     if request.method == 'POST':
-        # Alışveriş sepetindeki ürünleri al
+        #  Get items in the shopping cart
         basket_items = Order.objects.filter(user=request.user)
 
-        # Stok kontrolü yap
+        # Perform stock control
         out_of_stock = []
         for item in basket_items:
             if item.quantity > item.product.stock:
                 out_of_stock.append(item.product.name)
 
         if out_of_stock:
-            # Stokta olmayan ürünler varsa işlemi iptal et
+            # Cancel transaction if there are out-of-stock products
             return render(request, 'order_failed.html', {'out_of_stock': out_of_stock})
 
-        # Stokta yeterli miktarda ürün varsa siparişi işle
+        # If you have enough products in stock, process the order
         customer = Customer.objects.get(user=request.user)
         order = Order.objects.create(customer=customer)
         for item in basket_items:
@@ -60,7 +60,7 @@ def process_order(request):
             item.product.stock -= item.quantity
             item.product.save()
 
-        # Sepeti temizle
+        # Clear cart
         basket_items.delete()
         return redirect('order_success')
 
