@@ -36,7 +36,6 @@
         footer {
             background-color: cornsilk;
         }
-
     </style>
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -47,9 +46,21 @@
 <div class="topnav">
     <a class="active" href="/">Simple Shopping Site</a>
     <a href="/products">Products</a>
-    <a href="/basket">Basket</a>
+    <a href="/create_product">Create Product</a>
+    <a href="/create_customer">Create Customer</a>
+    <a href="/list_customers">List Customers</a>
+    <a href="/process_order">Process Order</a>
+    <a href="/list_orders">My Orders</a>
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+    <a href="{% url 'signup' %}">Sign Up</a>
 </div>
-
 {% block content %}
 
 {% endblock %}
