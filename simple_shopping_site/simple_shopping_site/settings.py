@@ -99,7 +99,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "simple_shopping_site/static"),
+    'C:/Users/asus/PycharmProjects/Digital_Shopping_Site/simple_shopping_site/simple_shopping_site/static/'
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
