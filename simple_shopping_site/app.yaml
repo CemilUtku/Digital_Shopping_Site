@@ -1,5 +1,9 @@
-runtime: python
-env: flex
+runtime: python39
+
+env_variables:
+  PORT: 8080
+
+entrypoint: python manage.py runserver 0.0.0.0:8080
 
 handlers:
 - url: /.*
